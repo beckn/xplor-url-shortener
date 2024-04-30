@@ -12,7 +12,7 @@ import { Request, Response } from 'express'
 import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
 import { LoggerMessage } from '../common/constants/logger-message'
-import { GrafanaLoggerService } from 'src/grafana/service/grafana.service'
+import { GrafanaLoggerService } from '../grafana/service/grafana.service'
 
 // Define types for request, response, and error handlers
 export type RequestHandler = (request: Request, logger: GrafanaLoggerService) => void

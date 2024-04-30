@@ -3,9 +3,9 @@ import { ConfigService } from '@nestjs/config'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { ShortUrl } from '../schema/short-url.schema'
-import { ShortnerErrorMessages } from 'src/common/constants/error-messages'
-import { getSuccessResponse } from 'src/common/constants/get-success-response'
-import { HttpResponseMessage } from 'src/common/constants/http-response-message'
+import { ShortnerErrorMessages } from '../../common/constants/error-messages'
+import { getSuccessResponse } from '../../common/constants/get-success-response'
+import { HttpResponseMessage } from '../../common/constants/http-response-message'
 @Injectable()
 export class UrlShortnerDeleteService {
   constructor(

@@ -4,11 +4,11 @@ import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { ShortUrl } from '../schema/short-url.schema'
 import * as crypto from 'crypto'
-import { ShortnerErrorMessages } from 'src/common/constants/error-messages'
-import { getSuccessResponse } from 'src/common/constants/get-success-response'
-import { HttpResponseMessage } from 'src/common/constants/http-response-message'
-import { HASH_LENGTH, SERVICE_BASE_URL } from 'src/common/constants/name-constants'
-import { API_PREFIX, SHORTNER_URL } from 'src/common/constants/api-constant'
+import { ShortnerErrorMessages } from '../../common/constants/error-messages'
+import { getSuccessResponse } from '../../common/constants/get-success-response'
+import { HttpResponseMessage } from '../../common/constants/http-response-message'
+import { HASH_LENGTH, SERVICE_BASE_URL } from '../../common/constants/name-constants'
+import { API_PREFIX, SHORTNER_URL } from '../../common/constants/api-constant'
 @Injectable()
 export class UrlShortnerCreateService {
   constructor(

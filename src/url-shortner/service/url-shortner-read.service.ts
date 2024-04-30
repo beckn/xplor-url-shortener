@@ -3,9 +3,9 @@ import { ConfigService } from '@nestjs/config'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { ShortUrl } from '../schema/short-url.schema'
-import { ShortnerErrorMessages } from 'src/common/constants/error-messages'
-import { getSuccessResponse } from 'src/common/constants/get-success-response'
-import { HttpResponseMessage } from 'src/common/constants/http-response-message'
+import { ShortnerErrorMessages } from '../../common/constants/error-messages'
+import { getSuccessResponse } from '../../common/constants/get-success-response'
+import { HttpResponseMessage } from '../../common/constants/http-response-message'
 @Injectable()
 export class UrlShortnerReadService {
   constructor(
@@ -25,7 +25,7 @@ export class UrlShortnerReadService {
   }
 
   // Redirects the request to the originalUrl
-  async redirectShortToOriginalUrl(hash: string, req, res): Promise<string> {
+  async redirectShortToOriginalUrl(hash: string, res): Promise<string> {
     const shortUrlDetails = await this.getShortUrlDetails(hash)
     if (!shortUrlDetails) {
       throw new BadRequestException(ShortnerErrorMessages.ERROR_NOT_FOUND)

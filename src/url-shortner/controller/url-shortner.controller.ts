@@ -25,7 +25,7 @@ export class UrlShortnerController {
   }
 
   @Get('/:hash')
-  redirectShortToOriginalUrl(@Param('hash') hash: string, @Req() req, @Res() res) {
-    return this.shortnerReadService.redirectShortToOriginalUrl(hash, req, res)
+  redirectShortToOriginalUrl(@Param('hash') hash: string, @Res() res) {
+    return this.shortnerReadService.redirectShortToOriginalUrl(hash, res)
   }
 }
