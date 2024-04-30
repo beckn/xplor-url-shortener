@@ -67,9 +67,8 @@ describe('UrlShortnerController', () => {
   describe('redirectShortToOriginalUrl', () => {
     it('should call redirectShortToOriginalUrl method of service with valid hash', async () => {
       const shortUrl = 'http://url.com/abc123'
-      const req = {} as any
       const res = { redirect: 'http://original-url.com/abc123' } as any
-      const spy = jest.spyOn(readService, 'redirectShortToOriginalUrl').mockResolvedValueOnce('http://url.com/abc123')
+      jest.spyOn(readService, 'redirectShortToOriginalUrl').mockResolvedValueOnce('http://url.com/abc123')
       const result = await controller.redirectShortToOriginalUrl('abc123', res)
       expect(result).toEqual(shortUrl)
     })

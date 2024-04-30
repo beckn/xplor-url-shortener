@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Req, Res } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Post, Res } from '@nestjs/common'
 import { UrlShortnerCreateService } from '../service/url-shortner-create.service'
 import { CreateShortUrlDto } from '../dto/create-short-url.dto'
 import { UrlShortnerDeleteService } from '../service/url-shortner-delete.service'
