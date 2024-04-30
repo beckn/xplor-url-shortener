@@ -7,7 +7,7 @@ import * as crypto from 'crypto'
 import { ShortnerErrorMessages } from 'src/common/constants/error-messages'
 import { getSuccessResponse } from 'src/common/constants/get-success-response'
 import { HttpResponseMessage } from 'src/common/constants/http-response-message'
-import { SERVICE_BASE_URL } from 'src/common/constants/name-constants'
+import { HASH_LENGTH, SERVICE_BASE_URL } from 'src/common/constants/name-constants'
 import { API_PREFIX, SHORTNER_URL } from 'src/common/constants/api-constant'
 @Injectable()
 export class UrlShortnerCreateService {
@@ -18,7 +18,7 @@ export class UrlShortnerCreateService {
 
   // Creates a short URL for the original URL with a unique hash
   async createShortUrl(originalUrl: string): Promise<string> {
-    const hash = crypto.createHash('sha256').update(originalUrl).digest('hex').slice(0, 12)
+    const hash = crypto.createHash('sha256').update(originalUrl).digest('hex').slice(0, HASH_LENGTH)
 
     const shortUrl = `${this.configService.get(SERVICE_BASE_URL)}/${API_PREFIX}/${SHORTNER_URL}/${hash}`
 
