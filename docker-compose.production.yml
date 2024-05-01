@@ -1,0 +1,8 @@
+version: "3"
+services:
+  backend:
+    container_name: url-shortner-nest-backend
+    build: .
+    ports:
+     - 1103:5438
+    restart: always
