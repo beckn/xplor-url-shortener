@@ -38,12 +38,9 @@ export class UrlShortnerReadService {
     // Construct the query string
     let queryString = ''
     if (queryParams) {
-      queryString = Object.entries(queryParams)
-        .map(([key, values]) => values.map((value) => `${key}=${encodeURIComponent(value)}`).join('&'))
-        .join('&')
+      queryString = stringify(queryParams)
     }
 
-    // Append the query string to the original URL
     const redirectUrl = queryString ? `${originalUrl}?${queryString}` : originalUrl
 
     res.redirect(redirectUrl)
