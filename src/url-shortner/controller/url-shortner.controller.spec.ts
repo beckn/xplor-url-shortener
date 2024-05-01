@@ -69,7 +69,7 @@ describe('UrlShortnerController', () => {
       const shortUrl = 'http://url.com/abc123'
       const res = { redirect: 'http://original-url.com/abc123' } as any
       jest.spyOn(readService, 'redirectShortToOriginalUrl').mockResolvedValueOnce('http://url.com/abc123')
-      const result = await controller.redirectShortToOriginalUrl('abc123', res)
+      const result = await controller.redirectShortToOriginalUrl('abc123', null, res)
       expect(result).toEqual(shortUrl)
     })
   })

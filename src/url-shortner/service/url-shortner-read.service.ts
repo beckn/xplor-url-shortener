@@ -6,6 +6,7 @@ import { ShortUrl } from '../schema/short-url.schema'
 import { ShortnerErrorMessages } from '../../common/constants/error-messages'
 import { getSuccessResponse } from '../../common/constants/get-success-response'
 import { HttpResponseMessage } from '../../common/constants/http-response-message'
+import { stringify } from 'querystring'
 @Injectable()
 export class UrlShortnerReadService {
   constructor(
@@ -24,8 +25,8 @@ export class UrlShortnerReadService {
     return getSuccessResponse(shortUrlDetails, HttpResponseMessage.OK)
   }
 
-  // Redirects the request to the originalUrl
-  async redirectShortToOriginalUrl(hash: string, res): Promise<string> {
+  // Redirects the request to the originalUrl along with the queryParams
+  async redirectShortToOriginalUrl(hash: string, queryParams: { [key: string]: string[] }, res): Promise<string> {
     const shortUrlDetails = await this.getShortUrlDetails(hash)
     if (!shortUrlDetails) {
       throw new BadRequestException(ShortnerErrorMessages.ERROR_NOT_FOUND)
@@ -33,7 +34,19 @@ export class UrlShortnerReadService {
 
     // Redirect the request to other url
     const originalUrl = shortUrlDetails['data']['originalUrl']
-    res.redirect(originalUrl)
+
+    // Construct the query string
+    let queryString = ''
+    if (queryParams) {
+      queryString = Object.entries(queryParams)
+        .map(([key, values]) => values.map((value) => `${key}=${encodeURIComponent(value)}`).join('&'))
+        .join('&')
+    }
+
+    // Append the query string to the original URL
+    const redirectUrl = queryString ? `${originalUrl}?${queryString}` : originalUrl
+
+    res.redirect(redirectUrl)
 
     return getSuccessResponse(shortUrlDetails, HttpResponseMessage.OK)
   }

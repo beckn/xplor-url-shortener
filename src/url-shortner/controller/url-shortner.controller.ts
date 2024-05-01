@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Res } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Post, Query, Res } from '@nestjs/common'
 import { UrlShortnerCreateService } from '../service/url-shortner-create.service'
 import { CreateShortUrlDto } from '../dto/create-short-url.dto'
 import { UrlShortnerDeleteService } from '../service/url-shortner-delete.service'
@@ -25,7 +25,7 @@ export class UrlShortnerController {
   }
 
   @Get('/:hash')
-  redirectShortToOriginalUrl(@Param('hash') hash: string, @Res() res) {
-    return this.shortnerReadService.redirectShortToOriginalUrl(hash, res)
+  redirectShortToOriginalUrl(@Param('hash') hash: string, @Query() queryParams, @Res() res) {
+    return this.shortnerReadService.redirectShortToOriginalUrl(hash, queryParams, res)
   }
 }
