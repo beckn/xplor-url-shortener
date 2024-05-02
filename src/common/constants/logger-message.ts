@@ -1,5 +1,5 @@
 export const LoggerMessage = {
-  serviceName: 'WALLET',
+  serviceName: 'URL_SHORTNER',
   requestInterceptorName: 'REQUEST_INTERCEPTOR',
   responseInterceptorName: 'RESPONSE_INTERCEPTOR',
   errorInterceptorName: 'ERROR_INTERCEPTOR',
