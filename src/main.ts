@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 Written by Bhaskar Kaura
 Date: 30 April, 2024
@@ -25,3 +26,13 @@ async function run() {
 }
 
 run()
+=======
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  await app.listen(3000);
+}
+bootstrap();
+>>>>>>> develop
