@@ -1,0 +1,17 @@
+import { Module } from '@nestjs/common'
+import { ApiClient } from '../../common/api-client'
+import { GrafanaLoggerService } from '../../grafana/service/grafana.service'
+import { UrlShortnerController } from '../../url-shortner/controller/url-shortner.controller'
+import { MongooseModule } from '@nestjs/mongoose'
+import { ShortUrlModel, ShortUrlSchema } from '../schema/short-url.schema'
+import { UrlShortnerCreateService } from '../service/url-shortner-create.service'
+import { UrlShortnerDeleteService } from '../service/url-shortner-delete.service'
+import { UrlShortnerReadService } from '../service/url-shortner-read.service'
+
+@Module({
+  imports: [MongooseModule.forFeature([{ name: ShortUrlModel, schema: ShortUrlSchema }]), ApiClient],
+  controllers: [UrlShortnerController],
+  providers: [GrafanaLoggerService, UrlShortnerCreateService, UrlShortnerReadService, UrlShortnerDeleteService],
+  exports: [UrlShortnerCreateService, UrlShortnerDeleteService, UrlShortnerDeleteService],
+})
+export class UrlShortnerModule {}
