@@ -14,9 +14,8 @@ export class UrlShortnerDeleteService {
   ) {}
 
   // Deletes a short URL using the shortUrl of the Url
-  async deleteShortUrl(shortUrl: string): Promise<string> {
-    const deletedShortUrl = await this.shortUrlModel.findOneAndDelete({ shortUrl }).then()
-
+  async deleteShortUrl(hash: string): Promise<string> {
+    const deletedShortUrl = await this.shortUrlModel.findOneAndDelete({ hash })
     if (!deletedShortUrl) {
       throw new BadRequestException(ShortnerErrorMessages.ERROR_DELETING_URL)
     }

@@ -16,7 +16,7 @@ export class UrlShortnerReadService {
 
   // Returns the details of the short url and the stored originalUrl
   async getShortUrlDetails(hash: string): Promise<string> {
-    const shortUrlDetails = await this.shortUrlModel.findOne({ hash }).then()
+    const shortUrlDetails = await this.shortUrlModel.findOne({ hash })
 
     if (!shortUrlDetails) {
       throw new BadRequestException(ShortnerErrorMessages.ERROR_NOT_FOUND)

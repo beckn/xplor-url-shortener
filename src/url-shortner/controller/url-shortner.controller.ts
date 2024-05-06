@@ -19,9 +19,9 @@ export class UrlShortnerController {
   }
 
   // Deletes the short url record!
-  @Delete('/:shortUrl')
-  deleteShortUrl(@Param('shortUrl') shortUrl: string) {
-    return this.shortnerDeleteService.deleteShortUrl(shortUrl)
+  @Delete('/:hash')
+  deleteShortUrl(@Param('hash') hash: string) {
+    return this.shortnerDeleteService.deleteShortUrl(hash)
   }
 
   @Get('/:hash')

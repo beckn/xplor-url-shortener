@@ -3,12 +3,12 @@ import { ConfigService } from '@nestjs/config'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { ShortUrl } from '../schema/short-url.schema'
-import * as crypto from 'crypto'
 import { ShortnerErrorMessages } from '../../common/constants/error-messages'
 import { getSuccessResponse } from '../../common/constants/get-success-response'
 import { HttpResponseMessage } from '../../common/constants/http-response-message'
-import { HASH_LENGTH, SERVICE_BASE_URL } from '../../common/constants/name-constants'
+import { SERVICE_BASE_URL } from '../../common/constants/name-constants'
 import { API_PREFIX, SHORTNER_URL } from '../../common/constants/api-constant'
+import { generateUniqueHash } from '../../utils/hash.util'
 @Injectable()
 export class UrlShortnerCreateService {
   constructor(
@@ -18,7 +18,7 @@ export class UrlShortnerCreateService {
 
   // Creates a short URL for the original URL with a unique hash
   async createShortUrl(originalUrl: string): Promise<string> {
-    const hash = crypto.createHash('sha256').update(originalUrl).digest('hex').slice(0, HASH_LENGTH)
+    const hash = generateUniqueHash(originalUrl)
 
     const shortUrl = `${this.configService.get(SERVICE_BASE_URL)}/${API_PREFIX}/${SHORTNER_URL}/${hash}`
 

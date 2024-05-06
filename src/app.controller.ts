@@ -1,19 +1,13 @@
-<<<<<<< HEAD
 import { Controller, Get } from '@nestjs/common'
 import { ApiResponse } from '@nestjs/swagger'
 import { HealthCheckEntity } from './app.entity'
 import { IHealthCheck } from './app.interface'
 import { AppService } from './app.service'
-=======
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
->>>>>>> develop
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-<<<<<<< HEAD
   @Get('/health')
   @ApiResponse({
     status: 200,
@@ -31,10 +25,5 @@ export class AppController {
 
   getHello(): string {
     return 'Hello!'
-=======
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
->>>>>>> develop
   }
 }
