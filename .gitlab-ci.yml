@@ -1,9 +1,12 @@
 stages:
   - dev
+
 deploy:dev:
   stage: dev
+
   tags:
     - gcp
+
   script:
     - echo "Deployment on Server."
     - Path=$(pwd)
@@ -14,11 +17,11 @@ deploy:dev:
         if [[ -d url-shortner-nest-backend ]]; then
           cd /home/ubuntu/url-shortner-nest-backend
           docker-compose down
-          cd /home/ubuntu && sudo rm -rf url-shortner-nest-backend
+          cd /home/ubuntu/ && sudo rm -rf url-shortner-nest-backend
         fi "
+
     - sshpass -p $Xplor_Password ssh $Xplor_Username@$Xplor_IP  "git clone -b develop https://user:'$GITLAB_ACCESS_TOKEN'@gitlab.thewitslab.com/wil-workspace/xplor/url-shortner-nest-backend.git"
     - sshpass -p $Xplor_Password scp .env $Xplor_Username@$Xplor_IP:/home/ubuntu/url-shortner-nest-backend
     - sshpass -p $Xplor_Password ssh -tt $Xplor_Username@$Xplor_IP  "
         cd /home/ubuntu/url-shortner-nest-backend && docker-compose up -d --build "
     - echo "https://xplor-url-shortner-dev.thewitslab.com"
-
