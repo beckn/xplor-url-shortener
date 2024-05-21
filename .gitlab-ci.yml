@@ -3,10 +3,8 @@ stages:
 
 deploy:dev:
   stage: dev
-
   tags:
     - gcp
-
   script:
     - echo "Deployment on Server."
     - Path=$(pwd)
