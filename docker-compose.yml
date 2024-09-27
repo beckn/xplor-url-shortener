@@ -1,6 +1,10 @@
 version: '3'
 services:
   xplor_url_shortner_backend_service:
+    logging:
+      driver: "file-log-driver"
+      options:
+        fpath: "/docker/xplor_url_shortner_backend_service.log"
     container_name: UserShortner-nest-backend
     build: .
     ports:
@@ -16,6 +20,10 @@ services:
       - xplor-network
 
   xplor_url_shortner_mongodb_service:
+    logging:
+      driver: "file-log-driver"
+      options:
+        fpath: "/docker/xplor_url_shortner_backend_service.log"
     image: mongo:6-jammy
     # ports:
     #   - '1104:27017'
